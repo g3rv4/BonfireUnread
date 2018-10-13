@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Bonfire Unread Count",
     "description": "Add unread notifications on Bonfire",
-    "version": "0.1",
+    "version": "0.1.1",
     "content_scripts": [
         {
             "matches": [
@@ -17,6 +17,11 @@
     ],
     "background": {
         "scripts": ["background.js"]
+    },
+    "icons": {
+        "128": "images/icon128.png",
+        "48": "images/icon48.png",
+        "16": "images/icon16.png"
     },
     "web_accessible_resources": [
         "injected_script.js"
