@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "name": "Bonfire Unread Count",
+    "description": "Add unread notifications on Bonfire",
+    "version": "0.1",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://chat.meta.stackexchange.com/*",
+                "https://chat.stackexchange.com/*",
+                "https://chat.stackoverflow.com/*"
+            ],
+            "js": [
+                "content_script.js"
+            ]
+        }
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "web_accessible_resources": [
+        "injected_script.js"
+    ],
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "https://chat.meta.stackexchange.com/*",
+        "https://chat.stackexchange.com/*",
+        "https://chat.stackoverflow.com/*",
+
+        "https://cdn.sstatic.net/Sites/*"
+    ]
+}
