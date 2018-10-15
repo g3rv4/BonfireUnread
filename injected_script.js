@@ -25,13 +25,15 @@ window.customFavicon = customFavicon;
 const contentObserver = new MutationObserver(async (records, _) => {
     const newTitle = $('title')[0].innerText;
 
-    const match = /^\(([0-9]+)\)/.exec(newTitle);
+    const match = /^\(([0-9]+)?(\*?)\)/.exec(newTitle);
     let count = 0;
+    let ping = '';
     if (match) {
         count = parseInt(match[1]);
+        ping = match[2];
     }
 
-    if (!count) {
+    if (!count && !ping) {
         window.customFavicon.href = defaultFaviconHref;
         return;
     }
@@ -57,8 +59,11 @@ const contentObserver = new MutationObserver(async (records, _) => {
         context.font = "10px Tahoma";
         context.textAlign = "right";
         context.textBaseline = "bottom";
-        context.strokeText(count, canvas.width - 2, canvas.height);
-        context.fillText(count, canvas.width - 2, canvas.height);
+
+        let num = count ? count : ""; //avoid NaN
+
+        context.strokeText(num + ping, canvas.width - 2, canvas.height);
+        context.fillText(num + ping, canvas.width - 2, canvas.height);
 
         // Replace favicon
         window.customFavicon.href = canvas.toDataURL("image/png");
