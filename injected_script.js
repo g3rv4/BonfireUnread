@@ -15,6 +15,9 @@ defaultFaviconHref = defaultFaviconHref.replace(/^https?:/, '');
 // now force the cdn
 defaultFaviconHref = defaultFaviconHref.replace(/^\/\/[^\/]*\/(content\/)?/, '//cdn.sstatic.net/');
 
+// some sites have /Content in the path which does not match the cdn... remove that
+defaultFaviconHref = defaultFaviconHref.replace(/\/Content/i, '');
+
 // aaand use https... because we're good people
 defaultFaviconHref = 'https:' + defaultFaviconHref;
 
